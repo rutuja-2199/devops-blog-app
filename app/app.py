@@ -3,9 +3,6 @@ import os
 
 app = Flask(__name__)
 
-# Load secret key from environment (demonstrates use of secrets)
-app.secret_key = os.environ.get("SECRET_KEY", "devops-demo-key")
-
 # Simple one-page blog content
 blog_posts = [
     {
