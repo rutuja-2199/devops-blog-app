@@ -1,6 +1,6 @@
 variable "project_id" {
   description = "GCP Project ID"
-  default     = "devops-blog"
+  default     = "devops-blog-486510"
 }
 
 variable "region" {
@@ -20,7 +20,7 @@ variable "vm_name" {
 
 variable "machine_type" {
   description = "VM machine type"
-  default     = "e2-medium"
+  default     = "e2-micro"
 }
 
 variable "network_tags" {
