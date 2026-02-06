@@ -7,10 +7,10 @@ A complete DevOps project demonstrating Flask web application deployment with Do
 ## Complete DevOps Pipeline
 
 ```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                        DEVELOPMENT                                           │
+┌────────────────────────────────────────────────────────────────────────────┐
+│                        DEVELOPMENT                                         │
 │  ┌────────────────────────────────────────────────────────────────────┐    │
-│  │  Developer writes code                                              │    │
+│  │  Developer writes code                                             │    │
 │  │  - Flask app (app/app.py)                                          │    │
 │  │  - HTML templates (app/templates/)                                 │    │
 │  │  - CSS styling (app/static/)                                       │    │
@@ -19,8 +19,8 @@ A complete DevOps project demonstrating Flask web application deployment with Do
 └─────────────────────────────────┼──────────────────────────────────────────┘
                                   │
                                   ▼
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                     VERSION CONTROL (GitHub)                                 │
+┌────────────────────────────────────────────────────────────────────────────┐
+│                     VERSION CONTROL (GitHub)                               │
 │  ┌────────────────────────────────────────────────────────────────────┐    │
 │  │  git push origin main                                              │    │
 │  │  - Triggers GitHub Actions workflows                               │    │
@@ -47,49 +47,49 @@ A complete DevOps project demonstrating Flask web application deployment with Do
                                │
                                ▼
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│                     INFRASTRUCTURE (GCP)                                     │
-│  ┌────────────────────────────────────────────────────────────────────┐    │
-│  │  Provisioned by Terraform                                          │    │
-│  │  ┌──────────────────┐  ┌──────────────────┐  ┌─────────────────┐ │    │
-│  │  │ Compute Engine   │  │ Firewall Rules   │  │ Cloud Storage   │ │    │
-│  │  │ - VM (e2-micro)  │  │ - SSH (22)       │  │ - Terraform     │ │    │
-│  │  │ - K3s installed  │  │ - HTTP (80)      │  │   state bucket  │ │    │
-│  │  │ - Public IP      │  │ - Flask (5000)   │  │                 │ │    │
-│  │  │                  │  │ - NodePort       │  │                 │ │    │
-│  │  │                  │  │   (30000-32767)  │  │                 │ │    │
-│  │  └──────────────────┘  └──────────────────┘  └─────────────────┘ │    │
-│  └────────────────────────────────────────────────────────────────────┘    │
+│                     INFRASTRUCTURE (GCP)                                    │
+│  ┌────────────────────────────────────────────────────────────────────┐     │
+│  │  Provisioned by Terraform                                          │     │
+│  │  ┌──────────────────┐  ┌──────────────────┐  ┌─────────────────┐   │     │
+│  │  │ Compute Engine   │  │ Firewall Rules   │  │ Cloud Storage   │   │     │
+│  │  │ - VM (e2-micro)  │  │ - SSH (22)       │  │ - Terraform     │   │     │
+│  │  │ - K3s installed  │  │ - HTTP (80)      │  │   state bucket  │   │     │
+│  │  │ - Public IP      │  │ - Flask (5000)   │  │                 │   │     │
+│  │  │                  │  │ - NodePort       │  │                 │   │     │
+│  │  │                  │  │   (30000-32767)  │  │                 │   │     │
+│  │  └──────────────────┘  └──────────────────┘  └─────────────────┘   │     │
+│  └────────────────────────────────────────────────────────────────────┘     │
 └─────────────────────────────────┬───────────────────────────────────────────┘
                                   │
                                   ▼
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│                   KUBERNETES (K3s on GCP VM)                                 │
-│  ┌────────────────────────────────────────────────────────────────────┐    │
-│  │  Deployment: devops-blog-deployment                                │    │
-│  │  ┌──────────────────────────────┐                                  │    │
-│  │  │         Pod                  │                                  │    │
-│  │  │      flask-app:latest        │                                  │    │
-│  │  │       Port: 5000             │                                  │    │
-│  │  └──────────────────────────────┘                                  │    │
-│  │                │                                                    │    │
-│  │                             │                                      │    │
-│  │                             ▼                                      │    │
-│  │  ┌────────────────────────────────────────────────────────┐       │    │
-│  │  │  Service: devops-blog-service (NodePort)               │       │    │
-│  │  │  - Internal Port: 5000                                 │       │    │
-│  │  │  - External NodePort: 30007                            │       │    │
-│  │  └────────────────────────────────────────────────────────┘       │    │
-│  └────────────────────────────────────────────────────────────────────┘    │
+│                   KUBERNETES (K3s on GCP VM)                                │
+│  ┌────────────────────────────────────────────────────────────────────┐     │
+│  │  Deployment: devops-blog-deployment                                │     │
+│  │  ┌──────────────────────────────┐                                  │     │
+│  │  │         Pod                  │                                  │     │
+│  │  │      flask-app:latest        │                                  │     │
+│  │  │       Port: 5000             │                                  │     │
+│  │  └──────────────────────────────┘                                  │     │
+│  │                │                                                   │     │
+│  │                             │                                      │     │
+│  │                             ▼                                      │     │
+│  │  ┌────────────────────────────────────────────────────────┐        │     │
+│  │  │  Service: devops-blog-service (NodePort)               │        │     │
+│  │  │  - Internal Port: 5000                                 │        │     │
+│  │  │  - External NodePort: 30007                            │        │     │
+│  │  └────────────────────────────────────────────────────────┘        │     │
+│  └────────────────────────────────────────────────────────────────────┘     │
 └─────────────────────────────────┬───────────────────────────────────────────┘
                                   │
                                   ▼
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│                          END USERS                                           │
-│  ┌────────────────────────────────────────────────────────────────────┐    │
-│  │  Browser → http://<VM_PUBLIC_IP>:30007                            │    │
-│  │  - Access Flask blog application                                  │    │
-│  │  - View blog posts styled with Bootstrap                          │    │
-│  └────────────────────────────────────────────────────────────────────┘    │
+│                          END USERS                                          │
+│  ┌────────────────────────────────────────────────────────────────────┐     │
+│  │  Browser → http://<VM_PUBLIC_IP>:30007                             │     │
+│  │  - Access Flask blog application                                   │     │
+│  │  - View blog posts styled with Bootstrap                           │     │
+│  └────────────────────────────────────────────────────────────────────┘     │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -152,13 +152,13 @@ devops-blog-app/
 
 ## Key Features
 
-✅ **Infrastructure as Code** - Terraform manages GCP resources  
-✅ **Containerization** - Docker for consistent environments  
-✅ **Orchestration** - K3s (lightweight Kubernetes)  
-✅ **CI/CD Pipeline** - Automated builds and deployments  
-✅ **External Access** - NodePort service (30007)  
-✅ **Remote State** - Terraform state in GCS bucket  
-✅ **Security** - Firewall rules, SSH key authentication  
+**Infrastructure as Code** - Terraform manages GCP resources  
+**Containerization** - Docker for consistent environments  
+**Orchestration** - K3s (lightweight Kubernetes)  
+**CI/CD Pipeline** - Automated builds and deployments  
+**External Access** - NodePort service (30007)  
+**Remote State** - Terraform state in GCS bucket  
+**Security** - Firewall rules, SSH key authentication  
 
 ---
 
