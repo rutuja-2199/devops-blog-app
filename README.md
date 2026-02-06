@@ -50,14 +50,14 @@ A complete DevOps project demonstrating Flask web application deployment with Do
 │                     INFRASTRUCTURE (GCP)                                    │
 │  ┌──────────────────────────────────────────────────────────────────────┐   │
 │  │  Provisioned by Terraform                                            │   │
-│  │  ┌──────────────────┐  ┌──────────────────┐  ┌─────────────────┐    │   │
-│  │  │ Compute Engine   │  │ Firewall Rules   │  │ Cloud Storage   │    │   │
-│  │  │ - VM (e2-micro)  │  │ - SSH (22)       │  │ - Terraform     │    │   │
-│  │  │ - K3s installed  │  │ - HTTP (80)      │  │   state bucket  │    │   │
-│  │  │ - Public IP      │  │ - Flask (5000)   │  │                 │    │   │
-│  │  │                  │  │ - NodePort       │  │                 │    │   │
-│  │  │                  │  │   (30000-32767)  │  │                 │    │   │
-│  │  └──────────────────┘  └──────────────────┘  └─────────────────┘    │   │
+│  │  ┌──────────────────┐  ┌──────────────────┐  ┌─────────────────┐     │   │
+│  │  │ Compute Engine   │  │ Firewall Rules   │  │ Cloud Storage   │     │   │
+│  │  │ - VM (e2-micro)  │  │ - SSH (22)       │  │ - Terraform     │     │   │
+│  │  │ - K3s installed  │  │ - HTTP (80)      │  │   state bucket  │     │   │
+│  │  │ - Public IP      │  │ - Flask (5000)   │  │                 │     │   │
+│  │  │                  │  │ - NodePort       │  │                 │     │   │
+│  │  │                  │  │   (30000-32767)  │  │                 │     │   │
+│  │  └──────────────────┘  └──────────────────┘  └─────────────────┘     │   │
 │  └──────────────────────────────────────────────────────────────────────┘   │
 └─────────────────────────────────┬───────────────────────────────────────────┘
                                   │
@@ -71,8 +71,8 @@ A complete DevOps project demonstrating Flask web application deployment with Do
 │  │  │      flask-app:latest        │                                    │   │
 │  │  │       Port: 5000             │                                    │   │
 │  │  └──────────────┬───────────────┘                                    │   │
-│  │                 │                                                     │   │
-│  │                 ▼                                                     │   │
+│  │                 │                                                    │   │
+│  │                 ▼                                                    │   │
 │  │  ┌──────────────────────────────────────────────────────────┐        │   │
 │  │  │  Service: devops-blog-service (NodePort)                 │        │   │
 │  │  │  - Internal Port: 5000                                   │        │   │
