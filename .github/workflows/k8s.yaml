@@ -12,15 +12,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repo
-      uses: actions/checkout@v3
+      # Step 1: Checkout your repository
+      - name: Checkout repo
+        uses: actions/checkout@v3
 
-    - name: Deploy to VM
-      uses: appleboy/ssh-action@v0.1.7
-      with:
-        host: ${{ secrets.VM_IP }}
-        username: ${{ secrets.VM_USER }}
-        key: ${{ secrets.VM_SSH_KEY }}
-        script: |
-          cd ~/devops-blog-app/k8s
-          kubectl apply -f .
+      # Step 2: Setup SSH key with correct permissions
+      - name: Setup SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.VM_SSH_KEY }}" > ~/.ssh/github-actions-key
+          chmod 600 ~/.ssh/github-actions-key
+
+      # Step 3: Deploy K8s manifests to your VM
+      - name: Apply K8s manifests on VM
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.VM_IP }}
+          username: ${{ secrets.VM_USER }}
+          key: ${{ secrets.VM_SSH_KEY }}
+          script: |
+            cd ~/devops-blog-app/k8s
+            kubectl apply -f .
