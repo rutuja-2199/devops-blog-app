@@ -1,4 +1,4 @@
-name: Deploy to k3s
+name: Deploy to K3s
 
 on:
   push:
@@ -12,18 +12,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout your repository
-      - name: Checkout repo
+      # Step 1: Checkout your repository (needed for GitHub Actions context)
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Step 2: Setup SSH key with correct permissions
+      # Step 2: Setup SSH key for connecting to the VM
       - name: Setup SSH key
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.VM_SSH_KEY }}" > ~/.ssh/github-actions-key
           chmod 600 ~/.ssh/github-actions-key
 
-      # Step 3: Deploy K8s manifests to your VM
+      # Step 3: Deploy K8s manifests directly from GitHub without storing on VM
       - name: Apply K8s manifests on VM
         uses: appleboy/ssh-action@v0.1.7
         with:
@@ -31,5 +31,9 @@ jobs:
           username: ${{ secrets.VM_USER }}
           key: ${{ secrets.VM_SSH_KEY }}
           script: |
-            cd ~/devops-blog-app/k8s
-            kubectl apply -f .
+            # Use K3s kubectl without sudo every time
+            alias kubectl='sudo k3s kubectl'
+
+            # Apply manifests directly from GitHub raw URLs
+            kubectl apply -f https://raw.githubusercontent.com/rutuja-2199/devops-blog-app/main/k8s/deployment.yaml
+            kubectl apply -f https://raw.githubusercontent.com/rutuja-2199/devops-blog-app/main/k8s/service.yaml
