@@ -5,7 +5,8 @@ FROM python:3.11-slim
 WORKDIR /app
 
 # Upgrade pip and install Flask
-RUN python -m pip install --upgrade pip && python -m pip install Flask==2.3.6
+COPY requirements.txt .
+RUN pip install -r requirements.txt
 
 # Copy app folder
 COPY app/ ./app/
