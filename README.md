@@ -90,6 +90,17 @@ A complete DevOps project demonstrating Flask web application deployment with Do
 │  │  - View blog posts styled with Bootstrap                             │   │
 │  └──────────────────────────────────────────────────────────────────────┘   │
 └─────────────────────────────────────────────────────────────────────────────┘
+                                  │
+                                  ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                      MONITORING (GCP)                                       │
+│  ┌──────────────────────────────────────────────────────────────────────┐   │
+│  │  Uptime Check                                                        │   │
+│  │  - Target: http://<VM_IP>:30007                                      │   │
+│  │  - Monitors application health and availability                      │   │
+│  │  - Alerts on downtime                                                │   │
+│  └──────────────────────────────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
@@ -146,6 +157,7 @@ devops-blog-app/
 | **CI/CD** | GitHub Actions | Automated build & deployment |
 | **Registry** | Docker Hub | Container image storage |
 | **Cloud Provider** | Google Cloud Platform | Compute, Storage, Networking |
+| **Monitoring** | GCP Monitoring | Uptime checks & alerts |
 
 ---
 
@@ -157,7 +169,8 @@ devops-blog-app/
 **CI/CD Pipeline** - Automated builds and deployments  
 **External Access** - NodePort service (30007)  
 **Remote State** - Terraform state in GCS bucket  
-**Security** - Firewall rules, SSH key authentication  
+✅ **Security** - Firewall rules, SSH key authentication  
+✅ **Monitoring** - GCP uptime checks for application health
 
 ---
 
