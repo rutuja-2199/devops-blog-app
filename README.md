@@ -2,6 +2,11 @@
 
 A complete DevOps project demonstrating Flask web application deployment with Docker, Kubernetes (K3s), Terraform, and GitHub Actions CI/CD.
 
+## 👤 Author
+
+**Blog:** [The Learning Pipeline](https://thelearningpipeline.blogspot.com)  
+_This project and related tutorials are published on my blog._
+
 ---
 
 ## Complete DevOps Pipeline
